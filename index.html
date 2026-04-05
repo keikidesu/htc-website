@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>株式会社HTC</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1e2d4a;
+      --navy-light: #2c4470;
+      --accent: #3b6eb5;
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --border: #e2e8f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ========== Header ========== */
+    header {
+      background: var(--navy);
+      padding: 0 2.5rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    nav { display: flex; gap: 2rem; }
+
+    nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+
+    nav a:hover { color: #fff; }
+
+    /* ========== Hero ========== */
+    #top {
+      position: relative;
+      color: #fff;
+      padding: 130px 2.5rem 120px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #top .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35);
+      z-index: 0;
+    }
+
+    #top .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    #top h1 {
+      font-size: clamp(1.75rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    #top p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.9;
+    }
+
+    /* ========== Wave ========== */
+    .wave { display: block; line-height: 0; }
+    .wave svg { display: block; width: 100%; }
+    .wave-top { background: var(--navy-light); }
+    .wave-dark { background: var(--navy); }
+
+    /* ========== Section base ========== */
+    .section {
+      padding: 80px 2.5rem;
+    }
+
+    .section-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-lead {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      max-width: 560px;
+    }
+
+    /* ========== Service ========== */
+    #service {
+      background: var(--bg);
+    }
+
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(30,45,74,0.06);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      border-top: 3px solid var(--accent);
+    }
+
+    .service-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ========== Company ========== */
+    #company {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-table tr:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .info-table th {
+      width: 130px;
+      padding: 1rem 0;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .info-table td {
+      padding: 1rem 0;
+      font-size: 0.875rem;
+      line-height: 1.75;
+    }
+
+    /* ========== Contact ========== */
+    #contact {
+      background: var(--bg);
+    }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 2rem;
+      display: inline-block;
+    }
+
+    .contact-box p {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-email {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-email:hover { text-decoration: underline; }
+
+    .contact-note {
+      margin-top: 1.25rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      background: var(--navy);
+      padding: 2.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 600px) {
+      header { padding: 0 1.25rem; }
+      nav { gap: 1.25rem; }
+      #top { padding: 80px 1.25rem 70px; }
+      .section { padding: 60px 1.25rem; }
+      .info-table th { width: 100px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="#top">HTC</a>
+    <nav>
+      <a href="#service">事業内容</a>
+      <a href="#company">会社情報</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="top">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>デジタルの力で、<br>新しい体験を届ける。</h1>
+      <p>株式会社HTCは、Webサービスの企画・開発・運営を手がける会社です。</p>
+    </div>
+  </section>
+
+  <div class="wave" style="background:#000;">
+    <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 C360,40 1080,40 1440,0 L1440,40 L0,40 Z" fill="#f5f7fa"/>
+    </svg>
+  </div>
+
+  <!-- Service -->
+  <section id="service" class="section">
+    <div class="section-inner">
+      <div class="section-label">Service</div>
+      <div class="section-title">事業内容</div>
+      <p class="section-lead">インターネットを通じてユーザーの日常に寄り添うサービスの企画・開発・運営を行っています。</p>
+      <div class="service-cards">
+        <div class="service-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80" alt="Webサービス開発">
+          <div class="card-body">
+            <h3>Webサービス開発</h3>
+            <p>ユーザー体験を重視したWebアプリケーションの設計・開発を行います。</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="サービス運営">
+          <div class="card-body">
+            <h3>サービス運営</h3>
+            <p>継続的な改善と安定した運営を通じて、サービスの価値を高め続けます。</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80" alt="デジタルコンテンツ">
+          <div class="card-body">
+            <h3>デジタルコンテンツ</h3>
+            <p>デジタルメディアを活用したコンテンツサービスの企画・提供を手がけます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company -->
+  <section id="company" class="section">
+    <div class="section-inner">
+      <div class="section-label">Company</div>
+      <div class="section-title">会社情報</div>
+      <table class="info-table">
+        <tr>
+          <th>会社名</th>
+          <td>株式会社HTC</td>
+        </tr>
+        <tr>
+          <th>英語名</th>
+          <td>HTC Inc.</td>
+        </tr>
+        <tr>
+          <th>代表取締役</th>
+          <td>山本秀樹</td>
+        </tr>
+        <tr>
+          <th>設立</th>
+          <td>2026年</td>
+        </tr>
+        <tr>
+          <th>資本金</th>
+          <td>100万円</td>
+        </tr>
+        <tr>
+          <th>事業内容</th>
+          <td>インターネットサービスの企画・開発・運営<br>Webアプリケーションの開発・提供</td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td>〒160-0023　東京都新宿区西新宿3丁目3番13号<br>西新宿水間ビル2F</td>
+        </tr>
+        <tr>
+          <th>URL</th>
+          <td>https://h-t-c.net</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="section-inner">
+      <div class="section-label">Contact</div>
+      <div class="section-title">お問い合わせ</div>
+      <p class="section-lead">弊社へのお問い合わせは、以下のメールアドレスよりご連絡ください。</p>
+      <div class="contact-box">
+        <p>メールアドレス</p>
+        <a class="contact-email" href="mailto:corp@h-t-c.net">corp@h-t-c.net</a>
+        <p class="contact-note">
+          ※ お問い合わせ内容によっては、ご返答までにお時間をいただく場合がございます。<br>
+          ※ 内容によっては、回答を差し控えさせていただく場合がございます。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="privacy.html">プライバシーポリシー</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 HTC Inc. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
